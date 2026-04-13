@@ -34,31 +34,43 @@ function graficarGato(){
 function limpiarCanva(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
 }
-  
-function moverIzquierda(){
-    gatoX=gatoX-10;
+
+function actualizarPantalla(){
     limpiarCanva();
     graficarGato();
     graficarComida();
+    
+}
+function moverIzquierda(){
+    gatoX=gatoX-10;
+    actualizarPantalla();
+    detectarColision();
 }
 
 function moverDerecha(){
     gatoX=gatoX+10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
+    actualizarPantalla();
+    detectarColision();
 }
 
 function moverArriba(){
     gatoY=gatoY-10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
+    actualizarPantalla();
+    detectarColision();
 }
 
 function moverAbajo(){
     gatoY=gatoY+10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
+    actualizarPantalla();
+    detectarColision();
+}
+
+function detectarColision(){
+    if(gatoX < comidaX + ANCHO_COMIDA &&
+       gatoX + ANCHO_GATO > comidaX &&
+       gatoY < comidaY + ALTO_COMIDA &&
+       gatoY + ALTO_GATO > comidaY){
+
+        alert("ÑAMI");
+    }
 }
