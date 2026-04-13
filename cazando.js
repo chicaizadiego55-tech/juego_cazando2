@@ -16,8 +16,10 @@ let tiempo=10;
 let intervaloTiempo = setInterval(restarTiempo, 1000);
 
 function iniciarJuego(){
+    limpiarCanva();
     graficarGato();
     graficarComida();
+    
 }
 
 function graficarRectangulo(x, y, ancho, alto, color){
@@ -37,33 +39,28 @@ function limpiarCanva(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
 }
 
-function actualizarPantalla(){
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    
-}
+
 function moverIzquierda(){
     gatoX=gatoX-10;
-    actualizarPantalla();
+    iniciarJuego();
     detectarColision();
 }
 
 function moverDerecha(){
     gatoX=gatoX+10;
-    actualizarPantalla();
+    iniciarJuego();
     detectarColision();
 }
 
 function moverArriba(){
     gatoY=gatoY-10;
-    actualizarPantalla();
+    iniciarJuego();
     detectarColision();
 }
 
 function moverAbajo(){
     gatoY=gatoY+10;
-    actualizarPantalla();
+    iniciarJuego();
     detectarColision();
 }
 
@@ -79,11 +76,24 @@ function detectarColision(){
         componente.textContent=puntos;
         mostrarEnSpan("txtPuntos",puntos);
     }
+    if(puntos == 6){
+            alert("¡GANASTE!");
+            clearInterval(intervaloTiempo);
+        }
 }
 
 function aparecerComida(){
     comidaX=generarAleatorio(0, canvas.width - ANCHO_COMIDA);
     comidaY=generarAleatorio(0, canvas.height - ALTO_COMIDA);
+    if(
+        comidaX < gatoX + ANCHO_GATO &&
+        comidaX + ANCHO_COMIDA > gatoX &&
+        comidaY < gatoY + ALTO_GATO &&
+        comidaY + ALTO_COMIDA > gatoY
+    ){
+        
+        aparecerComida();
+    }
 }
 
 
@@ -94,7 +104,20 @@ function restarTiempo(){
     mostrarEnSpan("txtTiempo", tiempo);
 
     if(tiempo == 0){
+        alert("GAME OVER");
         clearInterval(intervaloTiempo);
-        alert("FIN");
     }
+} 
+
+function reiniciar(){
+    tiempo=10
+    puntos=0
+    mostrarEnSpan("txtTiempo", tiempo);
+    mostrarEnSpan("txtPuntos", puntos);
+    gatoX=(canvas.width / 2) - (ANCHO_GATO / 2);
+    gatoY=(canvas.height / 2) - (ALTO_GATO / 2);
+    aparecerComida();
+    clearInterval(intervaloTiempo);
+    intervaloTiempo = setInterval(restarTiempo, 1000);
+    iniciarJuego();
 }
