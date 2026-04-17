@@ -5,31 +5,72 @@
   <link rel="stylesheet" href="cazando.css"/>
   <script src="utils.js"></script>
 </head>
+
 <body onload="iniciarJuego()">
 
-  <h1>Juego Cazando</h1>
-  <p>Autor: DIEGO CHICAIZA</p>
-  <canvas id="areaJuego" width="500" height="500"></canvas>
+  <div class="ui-container">
 
+    <header class="titulo">
+      <h1>CAZANDO.EXE</h1>
+      <p class="autor">Diego Chicaiza</p>
+    </header>
 
-  <div class="controles">
-    <button onclick="moverArriba()">⬆</button>
-    <br>
-    <button onclick="moverIzquierda()">⬅</button>
-    <button onclick="moverAbajo()">⬇</button>
-    <button onclick="moverDerecha()">➡</button>
-    <br>
-    <button onclick="reiniciar()">REINICIAR</button>
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="layout">
+
+      <!-- IZQUIERDA (CANVAS) -->
+      <div class="zona-juego">
+        <div class="game-frame">
+          <canvas id="areaJuego" width="500" height="500"></canvas>
+        </div>
+      </div>
+
+      <!-- DERECHA -->
+      <div class="zona-ui">
+
+        <!-- HUD ARRIBA -->
+        <div class="hud">
+          <div class="hud-box">
+            <span>PUNTOS</span>
+            <span id="txtPuntos">0</span>
+          </div>
+
+          <div class="hud-box">
+            <span>TIEMPO</span>
+            <span id="txtTiempo">20</span>
+          </div>
+        </div>
+
+        <!-- CONTROLES CENTRADOS -->
+        <div class="controles">
+
+          <div class="fila">
+            <button onclick="moverArriba()">▲</button>
+          </div>
+
+          <div class="fila">
+            <button onclick="moverIzquierda()">◀</button>
+            <button class="btn-reiniciar" onclick="reiniciar()">⟳</button>
+            <button onclick="moverDerecha()">▶</button>
+          </div>
+
+          <div class="fila">
+            <button onclick="moverAbajo()">▼</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <p id="mensaje"></p>
+
   </div>
-
-
-  <div class="panel">
-    <span>Puntos: <span id="txtPuntos">0</span></span>
-    <span>Tiempo: <span id="txtTiempo">10</span></span>
-  </div>
-
-  <p id="mensaje"></p>
 
   <script src="cazando.js"></script>
 </body>
+<div class="fondo">
+  <img src="gaming.png" alt="fondo gaming">
+</div>
 </html>

@@ -12,7 +12,7 @@ let comidaX = canvas.width - ALTO_COMIDA;
 let comidaY = canvas.height - ANCHO_COMIDA;
 
 let puntos=0;
-let tiempo=10;
+let tiempo=20;
 let intervaloTiempo = setInterval(restarTiempo, 1000);
 
 function iniciarJuego(){
@@ -75,6 +75,8 @@ function detectarColision(){
         let componente=document.getElementById("txtPuntos");
         componente.textContent=puntos;
         mostrarEnSpan("txtPuntos",puntos);
+        tiempo = 20;
+        mostrarEnSpan("txtTiempo", tiempo);
     }
     if(puntos == 6){
             alert("¡GANASTE!");
@@ -110,7 +112,7 @@ function restarTiempo(){
 } 
 
 function reiniciar(){
-    tiempo=10
+    tiempo=20
     puntos=0
     mostrarEnSpan("txtTiempo", tiempo);
     mostrarEnSpan("txtPuntos", puntos);
