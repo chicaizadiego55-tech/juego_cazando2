@@ -15,13 +15,18 @@ let puntos=0;
 let tiempoMax=15;
 let tiempo=tiempoMax;
 let intervaloTiempo = setInterval(restarTiempo, 1000);
-let 
+
+let imagenGato = new Image();
+imagenGato.src = "gato3.png";
+
+imagenGato.onload = function(){
+    iniciarJuego();
+};
 
 function iniciarJuego(){
     limpiarCanva();
     graficarGato();
     graficarComida();
-    
 }
 
 function graficarRectangulo(x, y, ancho, alto, color){
@@ -30,7 +35,7 @@ function graficarRectangulo(x, y, ancho, alto, color){
 }
 
 function graficarGato(){
-    graficarRectangulo(gatoX, gatoY, ANCHO_GATO, ALTO_GATO, "#808080");
+    ctx.drawImage(imagenGato, gatoX, gatoY, ANCHO_GATO, ALTO_GATO);
 }
 
  function graficarComida(){
