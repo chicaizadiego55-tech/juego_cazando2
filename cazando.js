@@ -75,7 +75,7 @@ function detectarColision(){
         let componente=document.getElementById("txtPuntos");
         componente.textContent=puntos;
         mostrarEnSpan("txtPuntos",puntos);
-        tiempo = 15;
+        tiempo=15;
         mostrarEnSpan("txtTiempo", tiempo);
     }
     if(puntos == 6){
